@@ -72,4 +72,10 @@ public class Cotisation {
 	public void setImposable(Boolean imposable) {
 		this.imposable = imposable;
 	}
+
+	@Override
+	public String toString() {
+		return "Cotisation [id=" + id + ", code=" + code + ", libelle=" + libelle + ", tauxSalarial=" + tauxSalarial
+				+ ", tauxPatronal=" + tauxPatronal + ", imposable=" + imposable + "]";
+	}
 }
