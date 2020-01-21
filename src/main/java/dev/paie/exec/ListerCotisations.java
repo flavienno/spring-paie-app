@@ -2,20 +2,20 @@ package dev.paie.exec;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
 import dev.paie.entite.Cotisation;
 import dev.paie.repository.CotisationRepository;
 
-//@Controller
+@Controller
 public class ListerCotisations implements Runnable {
+
+	private static final Logger LOG = LoggerFactory.getLogger(ListerCotisations.class);
 
 	private CotisationRepository cotisationRepository;
 
-	/**
-	 * @param cotisationRepository 
-	 * injection par controleur
-	 */
 	public ListerCotisations(CotisationRepository cotisationRepository) {
 		super();
 		this.cotisationRepository = cotisationRepository;
@@ -23,12 +23,13 @@ public class ListerCotisations implements Runnable {
 
 	@Override
 	public void run() {
-		// creation de la liste des cotisations et affichage
-		List<Cotisation> cotisations = this.cotisationRepository.findAll();
-		for (Cotisation cotisation : cotisations) {
-			System.out.println(cotisation.getLibelle());
-		}
 
+		List<Cotisation> listCotisation = cotisationRepository.findAll();
+
+		for (Cotisation cotisation : listCotisation) {
+			LOG.info("code={} libelle={} tauxSalarial={} tauxPatronal={}", cotisation.getCode(),
+					cotisation.getLibelle(), cotisation.getTauxSalarial(), cotisation.getTauxPatronal());
+		}
 	}
 
 }

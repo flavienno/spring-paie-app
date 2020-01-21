@@ -28,6 +28,8 @@ public class InsererGrade implements Runnable {
 		nvGrade.setCode("Grade_H");
 		nvGrade.setTauxBase(new BigDecimal(40));
 		nvGrade.setNbHeuresBase(new BigDecimal(152));
+		
+		this.gradeRepository.save(nvGrade);
 
 	}
 
